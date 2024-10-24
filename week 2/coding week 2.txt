@@ -1,0 +1,139 @@
+const int segmentA = 3;  // D0
+const int segmentB = 2;  // D1
+const int segmentC = 8;  // D2
+const int segmentD = 7;  // D3
+const int segmentE = 6;  // D4
+const int segmentF = 4;  // D5
+const int segmentG = 5;  // D6
+
+const int buttonPin = 10;  
+
+int currentNumber = 0;   
+bool buttonState = LOW;  
+bool lastButtonState = LOW;
+
+void setup() {
+  
+  pinMode(segmentA, OUTPUT);
+  pinMode(segmentB, OUTPUT);
+  pinMode(segmentC, OUTPUT);
+  pinMode(segmentD, OUTPUT);
+  pinMode(segmentE, OUTPUT);
+  pinMode(segmentF, OUTPUT);
+  pinMode(segmentG, OUTPUT);
+
+  pinMode(buttonPin, INPUT_PULLUP);  
+}
+
+
+void displayNumber(int num) {
+  switch (num) {
+    case 0:
+        digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, LOW);
+  digitalWrite(segmentE, LOW);
+  digitalWrite(segmentF, LOW);
+  digitalWrite(segmentG, HIGH);
+      break;
+    case 1:
+        digitalWrite(segmentA, HIGH);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, HIGH);
+  digitalWrite(segmentE, HIGH);
+  digitalWrite(segmentF, HIGH);
+  digitalWrite(segmentG, HIGH);
+      break;
+    case 2:
+      digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, HIGH);
+  digitalWrite(segmentG, LOW);
+  digitalWrite(segmentE, LOW);
+  digitalWrite(segmentD, LOW);
+  digitalWrite(segmentF, HIGH);
+      break;
+    case 3:
+        digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, LOW);
+  digitalWrite(segmentE, HIGH);
+  digitalWrite(segmentF, HIGH);
+  digitalWrite(segmentG, LOW);
+      break;
+    case 4:
+     digitalWrite(segmentA, HIGH);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, HIGH);
+  digitalWrite(segmentE, HIGH);
+  digitalWrite(segmentF, LOW);
+  digitalWrite(segmentG, LOW);
+      break;
+    case 5:
+     digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, HIGH);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, LOW);
+  digitalWrite(segmentE, HIGH);
+  digitalWrite(segmentF, LOW);
+  digitalWrite(segmentG, LOW);
+      break;
+    case 6:
+      digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, HIGH);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, LOW);
+  digitalWrite(segmentE, LOW);
+  digitalWrite(segmentF, LOW);
+  digitalWrite(segmentG, LOW);
+      break;
+    case 7:
+       digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, HIGH);
+  digitalWrite(segmentE, HIGH);
+  digitalWrite(segmentF, HIGH);
+  digitalWrite(segmentG, HIGH);
+      break;
+    case 8:
+       digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, LOW);
+  digitalWrite(segmentE, LOW);
+  digitalWrite(segmentF, LOW);
+  digitalWrite(segmentG, LOW);
+      break;
+    case 9:
+        digitalWrite(segmentA, LOW);
+  digitalWrite(segmentB, LOW);
+  digitalWrite(segmentC, LOW);
+  digitalWrite(segmentD, LOW);
+  digitalWrite(segmentE, HIGH);
+  digitalWrite(segmentF, LOW);
+  digitalWrite(segmentG, LOW);
+      break;
+  }
+}
+
+
+
+void loop() {
+  
+  buttonState = digitalRead(buttonPin);
+
+  
+  if (buttonState == LOW && lastButtonState == HIGH) {
+    currentNumber = (currentNumber + 1) % 10;  
+   displayNumber(currentNumber);             
+    delay(200);  
+  }
+
+  
+  lastButtonState = buttonState;
+}
