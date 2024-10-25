@@ -3,7 +3,16 @@
 
 *Example: Interfacing a 7 segment display with Arduino. Numbering sequence from 0 to 9.*
 
-## Experiment Steps: ##
+## Materials needed:
+- Arduino Uno board
+- Common cathode 7-segment display
+- 220-ohm resistors (7 of them)
+- Pushbuttons (2 or more)
+- Jumper wires
+- Breadboard
+- Circuit Setup:
+
+## Experiment Steps:
 1. Build the circuit according to the circuit setup instructions.
 2. Upload the provided Arduino code to your Arduino Uno.
 3. Open the Serial Monitor in the Arduino IDE.
