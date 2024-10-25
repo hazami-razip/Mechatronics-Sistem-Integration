@@ -1,4 +1,4 @@
-#Week 2: Digital Logic System:
+# Week 2: Digital Logic System:
 Basic Logic Gates, Electronic Circuit Interfacing, Basic ALU, 7 segment display, ICs based interfacing application.
 Example: Interfacing a 7 segment display with Arduino. Numbering sequence from 0 to 9.
 
