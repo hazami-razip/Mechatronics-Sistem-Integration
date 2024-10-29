@@ -1,0 +1,39 @@
+
+#include <Servo.h>
+
+Servo myServo;
+int potPin = A0; // Potentiometer connected to analog pin A0
+int servoPin = 9; // Servo connected to digital pin 9
+int angle = 0; // Variable to store the servo angle
+int potValue = 0; // Variable to store the potentiometer value
+int stopCommand = 0; // Variable to store the stop command from Python
+
+void setup() {
+  Serial.begin(9600); // Start serial communication
+  myServo.attach(servoPin); // Attach the servo to pin 9
+}
+
+void loop() {
+  // Check for a stop command from Python
+  if (Serial.available() > 0) {
+    stopCommand = Serial.read();
+    if (stopCommand == 's') { // Check for 's' to stop
+      return; // Stop the loop execution
+    }
+  }
+
+  // Read the potentiometer value
+  potValue = analogRead(potPin); 
+  // Map potentiometer value to servo angle range (0-180 degrees)
+  angle = map(potValue, 0, 1023, 0, 180); 
+  // Set the servo to the mapped angle
+  myServo.write(angle); 
+  
+  // Send both the potentiometer value and servo angle to Serial Monitor
+  Serial.print("Potentiometer Value: ");
+  Serial.print(potValue);
+  Serial.print(" | Servo Angle: ");
+  Serial.println(angle);
+
+  delay(200); // Small delay for stability
+}
