@@ -1,0 +1,31 @@
+[ARDUINO]
+  const int LED = 9;
+  
+  void setup() {
+  Serial.begin(9600);
+  pinMode(LED,OUTPUT);
+  }
+  
+  void loop() {
+    int potValue = analogRead(A0);
+    Serial.println(potValue);
+    delay(500); // add a delay to avoid sending data too fast 
+  }
+
+[PYTHON
+  import serial
+  import time
+  
+  # Set up serial communication (adjust 'COM_PORT' and 'BAUD_RATE' as needed)
+  COM_PORT = 'COM5'  # Change to your actual port
+  BAUD_RATE = 9600
+  ser = serial.Serial(COM_PORT, BAUD_RATE)
+  
+  try:
+      while True:
+          pot_value = ser.readline().decode().strip()  # Replace with actual pin number
+          ser.write(f"{pot_value}\n".encode())  # Send the value over serial
+          print(pot_value)  # Print to console
+          time.sleep(0.5)  # Delay to avoid sending data too fast
+  except KeyboardInterrupt:
+      ser.close()
